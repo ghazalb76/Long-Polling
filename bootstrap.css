@@ -4560,7 +4560,10 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 2rem;
+  box-shadow: 8px 8px 3px grey;
+  margin-top: 5%;
+  width: 60%;
 }
 
 .card > hr {
@@ -4581,7 +4584,7 @@ input[type="button"].btn-block {
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 3rem;
 }
 
 .card-title {
