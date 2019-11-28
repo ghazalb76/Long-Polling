@@ -107,6 +107,15 @@
 .comment-icon:hover {
   color: darkblue;
 }
+.myForm{
+  width: 88%;
+  margin: 14% 5%;
+}
+.myBtn{
+  margin: 3% 83%;
+  width: 10%;
+  height: 26%;
+}
 
 *,
 *::before,
