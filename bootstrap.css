@@ -88,6 +88,15 @@
 .comment-icon:hover {
   color: darkblue;
 }
+.trash-icon{
+  font-size: 50px;
+  margin-left: 55%;
+  margin-top: 4%;
+}
+.edit-icon{
+  margin: 4% -9%;
+  position: absolute;
+}
 
 *,
 *::before,
