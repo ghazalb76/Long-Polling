@@ -68,6 +68,9 @@
   display: inline-block;
   margin-left: 91%;
 }
+.new-post-card:hover{
+  transform: scale(1.2);
+}
 
 
 .plus-icon{
