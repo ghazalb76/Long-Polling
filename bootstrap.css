@@ -34,6 +34,30 @@
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.new-post-card{
+  position: relative;
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2rem;
+  box-shadow: 8px 8px 3px grey;
+  margin-top: 12%;
+  width: 16%;
+  display: inline-block;
+  margin-left: 91%;
+}
+.plus-icon{
+  font-size: 31px;
+  display: inline-block;
+  margin-left: 69%;
+  margin-top: -20%;
+  position: absolute;
+}
 .nav-text{
   display: inline-block; 
   margin-left: 3rem;
@@ -4592,7 +4616,7 @@ input[type="button"].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2rem;
   box-shadow: 8px 8px 3px grey;
-  margin-top: 5%;
+  margin-top: 2%;
   width: 60%;
 }
 
