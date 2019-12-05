@@ -63,14 +63,16 @@ def edit_post (post_id):
 
 app.add_url_rule('/api/editPost/<int:post_id>' , view_func = edit_post, methods = ['GET','POST'])
 
-
+@cross_origin(supports_credentials=True)
 def poll ():
+    print("AAAAAAAA")
     now = datetime.now()
     while True:
         db.session.commit()
         for post in PostModel.query.all() :
             print (post.timestamp)
             if (post.timestamp > now)  :
+                
                 out = {'status':'changed'}
                 return jsonify (out)
         for log in PostLog.query.all():
