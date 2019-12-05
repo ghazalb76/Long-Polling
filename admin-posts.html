@@ -81,63 +81,89 @@
  
 <script>
   var editId, sub, posts_list;
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://127.0.0.1:5000/api/posts');
-  xhr.send();
-  xhr.onload = function() {
-  var obj = JSON.parse(xhr.response);
-  posts_list = obj.posts;
-      
-  var i;
-  for (i = 0; i < posts_list.length; i++) {
-    var container = document.createElement('div');
-    container.setAttribute('class', 'container');
-    container.setAttribute('id', posts_list[i].id);
-    var card = document.createElement('div');
-    card.setAttribute('class', 'card mx-auto card-class');
-    var card_body = document.createElement('div');
-    card_body.setAttribute('class', 'card-body');
-    var titlesh = document.createElement('h3');
-    titlesh.innerHTML = posts_list[i].title;
-    var textesh = document.createElement('p');
-    textesh.innerHTML = posts_list[i].description;
-    var like = document.createElement('i');
-    like.setAttribute('class', 'fa like_icon fa-thumbs-up');
-    like.setAttribute('style', 'font-size: 25px;');
-    var like_text = document.createElement('p');
-    like_text.setAttribute('class', 'like-text');
-    like_text.innerHTML = "5 Likes";
-    var comment = document.createElement('i');
-    comment.setAttribute('class', 'fa comment-icon fa-comments-o');
-    comment.setAttribute('style', 'font-size: 30px;');
-    var comment_text = document.createElement('p');
-    comment_text.setAttribute('class', 'like-text');
-    comment_text.innerHTML = "1 Comments";
-    var trash = document.createElement('i');
-    trash.setAttribute('class', 'fa trash-icon fa-trash');
-    trash.setAttribute('style', 'font-size: 23px;');
-    trash.setAttribute('name',posts_list[i].id);
-    trash.setAttribute('onclick','delete_post(this)');
-    var edit = document.createElement('i');
-    edit.setAttribute('class', 'fa edit-icon fa-pencil-square-o');
-    edit.setAttribute('style', 'font-size: 23px');
-    edit.setAttribute('name',posts_list[i].id);
-    edit.setAttribute('onclick','edit_post(this)');
+  function poll_posts(){
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:5000/api/posts');
+    xhr.send();
+    xhr.onload = function() {
+    var obj = JSON.parse(xhr.response);
+    posts_list = obj.posts;
+        
+    var i;
+    for (i = 0; i < posts_list.length; i++) {
+      var container = document.createElement('div');
+      container.setAttribute('class', 'container');
+      container.setAttribute('id', posts_list[i].id);
+      var card = document.createElement('div');
+      card.setAttribute('class', 'card mx-auto card-class');
+      var card_body = document.createElement('div');
+      card_body.setAttribute('class', 'card-body');
+      var titlesh = document.createElement('h3');
+      titlesh.innerHTML = posts_list[i].title;
+      var textesh = document.createElement('p');
+      textesh.innerHTML = posts_list[i].description;
+      var like = document.createElement('i');
+      like.setAttribute('class', 'fa like_icon fa-thumbs-up');
+      like.setAttribute('style', 'font-size: 25px;');
+      var like_text = document.createElement('p');
+      like_text.setAttribute('class', 'like-text');
+      like_text.innerHTML = "5 Likes";
+      var comment = document.createElement('i');
+      comment.setAttribute('class', 'fa comment-icon fa-comments-o');
+      comment.setAttribute('style', 'font-size: 30px;');
+      var comment_text = document.createElement('p');
+      comment_text.setAttribute('class', 'like-text');
+      comment_text.innerHTML = "1 Comments";
+      var trash = document.createElement('i');
+      trash.setAttribute('class', 'fa trash-icon fa-trash');
+      trash.setAttribute('style', 'font-size: 23px;');
+      trash.setAttribute('name',posts_list[i].id);
+      trash.setAttribute('onclick','delete_post(this)');
+      var edit = document.createElement('i');
+      edit.setAttribute('class', 'fa edit-icon fa-pencil-square-o');
+      edit.setAttribute('style', 'font-size: 23px');
+      edit.setAttribute('name',posts_list[i].id);
+      edit.setAttribute('onclick','edit_post(this)');
 
-    document.getElementById('cards').appendChild(container); 
-    container.appendChild(card);
-    card.appendChild(card_body);
-    card_body.appendChild(titlesh);
-    card_body.appendChild(textesh);
-    card_body.appendChild(like);
-    card_body.appendChild(like_text);
-    card_body.appendChild(comment);
-    card_body.appendChild(comment_text);
-    card_body.appendChild(trash);
-    card_body.appendChild(edit);
+      document.getElementById('cards').appendChild(container); 
+      container.appendChild(card);
+      card.appendChild(card_body);
+      card_body.appendChild(titlesh);
+      card_body.appendChild(textesh);
+      card_body.appendChild(like);
+      card_body.appendChild(like_text);
+      card_body.appendChild(comment);
+      card_body.appendChild(comment_text);
+      card_body.appendChild(trash);
+      card_body.appendChild(edit);
 
-      }
+    }
+  }     
 }
+
+  function poll_changes(){
+    let xhr3 = new XMLHttpRequest();
+    xhr3.open('GET', 'http://127.0.0.1:5000/api/poll');
+    xhr3.send();
+    xhr3.onreadystatechange = function() {
+      if (xhr3.readyState === 4) {
+        var obj = JSON.parse(xhr3.response);
+        if(obj.status == "changed"){
+          var e = document.getElementById('cards');  
+          var child = e.lastElementChild;  
+          while (child) { 
+              e.removeChild(child); 
+              child = e.lastElementChild; 
+          } 
+          poll_posts();
+        }
+      }
+      poll_changes(); 
+    }
+  }
+  poll_posts();
+  poll_changes();
+
 
   function delete_post(trash) {
     var trashId = eval(trash.getAttribute('name'));
