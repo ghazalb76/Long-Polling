@@ -12,15 +12,15 @@
 - Flask-Cors: 3.0.7
 
 ### How to run
-1. After installing the requirements, create the database by below command:
+After installing the requirements, create the database by below command:
 ```
   python manage.py initdb
 ```
-**Note:** Path of the database is *relative*, so if you encountered a database error enter the path *explicitly* (set the dir_path variable)
-2. Now run the Server using below command:
+ **Note:** Path of the database is *relative*, so if you encountered a database error enter the path *explicitly* (set   the dir_path variable)
+Now run the Server using below command:
 ```
   python manage.py run
 ```
-Server will be run on Ip: *localhost* and port: *5000* by default.
-3. Open admin.html and click on *View Posts* and *New Post* and open them in seperate tabs.
-4. Add some posts and now you can see that new posts can be seen in view posts tab dunamically and on-demand. You can also edit or delete posts and see that all changes can be updated without **ANY REFRESH**.
+   Server will be run on Ip: *localhost* and port: *5000* by default.<br />
+Open admin.html and click on *View Posts* and *New Post* and open them in seperate tabs.<br />
+Add some posts and now you can see that new posts can be seen in view posts tab dunamically and on-demand. You can also edit or delete posts and see that all changes can be updated without **ANY REFRESH**.
